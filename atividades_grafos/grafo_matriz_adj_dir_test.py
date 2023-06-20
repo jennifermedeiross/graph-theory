@@ -677,9 +677,12 @@ class TestGrafo(unittest.TestCase):
             'Cálculo Diferencial e Integral III', 'Estágio Supervisionado I', 'Prática de Ensino III', 'TCC',
             'Física Básica III', 'Física Experimental III', 'Computação Aplicada à Física', 'Física Matemática I',
             'Termodinâmica', 'Estágio Supervisionado II', 'Prática de Lab. e Inst. para o Ens. de Fís. I',
-            'Prática de Ensino IV', 'Física Básica IV', 'Física Experimental IV', 'Mecânica Analítica',
-            'Eletromagnetismo', 'Estágio Supervisionado III', 'Prática de Lab. e Inst. para o Ens. de Fís. II',
-            'Física Moderna Experimental', 'Evolução do Pensamento Científico', 'Estágio Supervisionado IV']
+            'Prática de Ensino IV', 'Física Básica IV', 'Física Experimental IV', 'Mecânica Analítica', 'Eletromagnetismo',
+            'Estágio Supervisionado III', 'Prática de Lab. e Inst. para o Ens. de Fís. II', 'Física Moderna Experimental',
+            'Evolução do Pensamento Científico', 'Estágio Supervisionado IV', 'Física Moderna', 'Mecânica Quântica',
+            'Mecânica Estatística'
+        ]
+
 
 
         self.matematica = MeuGrafo()
@@ -1159,4 +1162,4 @@ class TestGrafo(unittest.TestCase):
         self.assertEqual(self.matematica.khan(), self.matematica_ordTop)
         self.assertEqual(self.letras.khan(), self.letras_ordTop)
         self.assertEqual(self.telematica.khan(), self.telematica_ordTop)
-        # self.assertEqual(self.fisica.khan(), self.fisica_ordTop) - APENAS ESSE CASO GERA LOOP INFINITO
+        self.assertEqual(self.fisica.khan(), self.fisica_ordTop)

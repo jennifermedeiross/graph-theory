@@ -137,13 +137,18 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
     def khan(self):
         copia = deepcopy(self)
         ordem_topologica = []
+        vertices_removidos = 0
 
         while copia.vertices:
             nodos_fonte = []
             for i in range(len(copia.vertices)):
                 vertice = copia.vertices[i]
-                if not any(copia.matriz[j][i] for j in range(len(copia.vertices))): #função python que verifica se algum valor dentro da iteração é verdadeira, mas negada
+                if not any(len(copia.matriz[j][i]) != 0 for j in range(len(copia.vertices))):
                     nodos_fonte.append(vertice.rotulo)
+
+            if not nodos_fonte:
+                # Não há nodos fonte nesta iteração, indica um laço
+                break
 
             for nodo in nodos_fonte:
                 arestas = copia.arestas_sobre_vertice(nodo)
@@ -151,5 +156,8 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
                     copia.remove_aresta(aresta.rotulo)
                 copia.remove_vertice(nodo)
                 ordem_topologica.append(nodo)
+                vertices_removidos += 1
+
+        ordem_topologica.extend(copia.vertices[i].rotulo for i in range(len(copia.vertices)))
 
         return ordem_topologica
